@@ -38,11 +38,17 @@ include'inc/header.php';
 		  <form action="" method="post">
 			  <div class="form-group">
 				  <label for="username">User Name</label>
-				  <input type="text" class="form-control" name="username">
+				  <input type="text" class="form-control" name="username" require>
 			  </div>
 			  <div class="form-group">
 				  <label for="password">Password</label>
-				  <input type="password" class="form-control" name="password">
+				  <div class="input-group-append">
+				  <input type="password" class="form-control pwd" name="password" id="password" require> 
+    				<span class="input-group-text" onclick="password_show_hide();">
+						<i class="fas fa-eye" id="show_eye"></i>
+                  		<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+					</span>	
+					</div>	 
 			  </div>
 			  </div>
 			  <div class="card-footer">

@@ -40,6 +40,10 @@
 			  <div class="form-group">
 				  <label for="password">Password</label>
 				  <input type="password" class="form-control" name="password">
+				  <span class="input-group-text" onclick="password_show_hide();">
+						<i class="fas fa-eye" id="show_eye"></i>
+                  		<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+					</span>	
 			  </div>
 			  </div>
 			  <div class="card-footer">

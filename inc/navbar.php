@@ -10,9 +10,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="./index.php">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./addpost.php">Add Post</a>
-      </li>
+      <?php if(isset($_SESSION['username'])==true):?>
+        <li class="nav-item">
+          <a class="nav-link" href="./addpost.php" >Add Post</a>
+        </li>
+        <?php endif; ?>
     </ul>
     <ul class="navbar-nav ml-auto">
       
@@ -20,7 +22,7 @@
       <li class="nav-item">
           <?php if(isset($_SESSION['username'])==true):?>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Welcome - <?php echo $_SESSION['username']; ?> </a>
+              <a class="nav-link active" href="..//php-blog-web-app/user.php?username=<?php echo $_SESSION['username']; ?>">Welcome - <?php echo $_SESSION['username']; ?> </a>
             </li>
             <a class="nav-link" href="./logout.php">Logout</a>
           <?php else :?>

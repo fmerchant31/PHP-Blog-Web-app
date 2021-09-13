@@ -8,20 +8,21 @@ include'inc/header.php';
         if($_SERVER["REQUEST_METHOD"] == "POST") {
         	 $username = stripcslashes($_POST['username']);
         	 $password = stripcslashes($_POST['password']);
- 
-            $query = "SELECT username FROM users WHERE username='$username' and password='$password'";
+			$password = md5($password);
+            $query = "SELECT * FROM users WHERE username='$username' and password='$password' LIMIT 1";
             
 		    $result = mysqli_query($conn,$query) ;
 			//$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 			  
-		    //$rows = mysqli_num_rows($result);
-            if($result==1){
+		    $rows = mysqli_num_rows($result);
+            if($rows==0){
 				session_start();
 				$_SESSION['username'] = $username;
 				header("Location: index.php"); // Redirect user to index.php
 	        }
 			else{
 					echo "<div class='alert alert-danger'>Username/password is incorrect.</div>";
+					echo $password;
 					
 			}
 		}
@@ -38,12 +39,19 @@ include'inc/header.php';
 		  <form action="" method="post">
 			  <div class="form-group">
 				  <label for="username">User Name</label>
-				  <input type="text" class="form-control" name="username">
+				  <input type="text" class="form-control" name="username" require>
 			  </div>
 			  <div class="form-group">
 				  <label for="password">Password</label>
-				  <input type="password" class="form-control" name="password">
-			  </div>
+				 
+				  <div class="input-group-append">
+				  <input type="password" class="form-control pwd" name="password" id="password" require> 
+    				<span class="input-group-text" onclick="password_show_hide();">
+						<i class="fas fa-eye" id="show_eye"></i>
+                  		<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+					</span>	
+					</div>	  
+				</div>
 			  <div class="form-group">
 				  <a href="forgetpass.php" style="color:white;text-align:center;" name="forget">Forget Password</a>
 			  </div>
@@ -56,6 +64,7 @@ include'inc/header.php';
 	  </div>  <!-- card end -->
 	</div>
 	 </div> 
+
 	 <?php } ?>
 
 <?php 

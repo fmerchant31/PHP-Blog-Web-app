@@ -15,6 +15,7 @@ include'inc/header.php';
             
 				if($password1 == $password2)
 				{	
+				$password2 = md5($password2);
 				$query = "UPDATE users1 SET password='$password2' WHERE email='$key' ";  
 				//echo "$query";
 				$result = mysqli_query($conn,$query) ;
@@ -50,11 +51,23 @@ include'inc/header.php';
 			  </div>-->
 			  <div class="form-group">
 				  <label for="password">New Password</label>
-				  <input type="password" class="form-control" name="pswd1">
+				  <div class="input-group-append">
+				  <input type="password" class="form-control pwd" name="pswd1" id="password"> 
+    				<span class="input-group-text" onclick="password_show_hide();">
+						<i class="fas fa-eye" id="show_eye"></i>
+                  		<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+					</span>	
+					</div>	
 			  </div>
 			  <div class="form-group">
 				  <label for="password">Confirm Password</label>
-				  <input type="password" class="form-control"  name="pswd2">
+				  <div class="input-group-append">
+				  <input type="password" class="form-control pwd" name="pswd2" id="password1"> 
+    				<span class="input-group-text" onclick="password_show_hide1();">
+						<i class="fas fa-eye" id="show_eye1"></i>
+                  		<i class="fas fa-eye-slash d-none" id="hide_eye1"></i>
+					</span>	
+					</div>	
 			  </div>
 			  
 
