@@ -1,6 +1,8 @@
 <?php 
     require('config/config.php'); 
-	require('config/db.php'); 
+	//require('config/db.php'); 
+	require_once('config/database.php');
+    $funObj = new Databases();  
 ?>
 <?php 
 include'inc/header.php';
@@ -9,13 +11,14 @@ include'inc/header.php';
         	 $username = stripcslashes($_POST['username']);
         	 $password = stripcslashes($_POST['password']);
  
-            $query = "SELECT username FROM admin WHERE username='$username' and password='$password'";
-            
-		    $result = mysqli_query($conn,$query) ;
-			//$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+           // $query = "SELECT username FROM admin WHERE username='$username' and password='$password'";
+		  
+		    /*$result = mysqli_query($conn,$query) ;
+			$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 			  
-		    $rows = mysqli_num_rows($result);
-            if($rows==1){
+		     $rows = mysqli_num_rows($result);*/
+			 $post = $funObj->Login($username,$password);
+            if($post){
 				session_start();
 				$_SESSION['username'] = $username;
 				header("Location: index.php"); // Redirect user to index.php

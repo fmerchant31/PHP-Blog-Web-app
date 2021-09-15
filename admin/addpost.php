@@ -1,30 +1,42 @@
 <?php 
 	session_start();
-    require('config/config.php'); 
-	require('config/db.php'); 
-	
+    require_once('config/config.php'); 
+	require_once('config/database.php');
+
+    $funObj = new Databases();  
 	if(isset($_POST['submit']) && isset($_FILES['uploadfile']) ){
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
 		if(isset($filename) and !empty($filename)){	
 		$folder = "image/" . $filename;
-		/*$author = $_SESSION['username'];*/
-		$title  = mysqli_real_escape_string($conn, $_POST['title']);
-		$author = mysqli_real_escape_string($conn, $_POST['author']);
-		$body   = mysqli_real_escape_string($conn, $_POST['body']);
-		$query = "INSERT INTO posts (title, author, photo, body) VALUES ('$title','$author','$filename','$body')";
+		/*$author = $_SESSION['username'];
+		$title  = mysqli_real_escape_string($this->con, $_POST['title']);
+		$author = mysqli_real_escape_string($this->con, $_POST['author']);
+		$body   = mysqli_real_escape_string($this->con, $_POST['body']);*/
+		
+		//$query = "INSERT INTO posts (title, author, photo, body) VALUES ('$title','$author','$filename','$body')";
 		if (move_uploaded_file($tempname, $folder)) {
 			$msg = "Image uploaded successfully";
 		}else{
 			$msg = "Failed to upload image";
-	}}
+	}
+	$post = $funObj->AddPost($_REQUEST['title'],$_REQUEST['author'],$filename,$_REQUEST['body']);
 
-		if(mysqli_query($conn, $query)){
+
+
+		/*if(mysqli_query($conn, $query)){
 			//echo $filename;
 				header('Location: index.php');
 		} else{
 			echo "Error" . mysqli_error($conn);
 		}
+	}*/
+		if($post){
+			header('Location: index.php');
+			
+			} else{
+				echo "Error" . mysqli_error($conn);
+			}}
 	}
 ?>
 

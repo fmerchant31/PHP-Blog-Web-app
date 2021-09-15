@@ -2,40 +2,42 @@
 session_start();
     require('config/config.php'); 
 	require('config/db.php'); 
+	require_once('config/database.php');
+    $funObj = new Databases(); 
 	
 	if(isset($_POST['submit']) && isset($_FILES['uploadfile'])){
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
 		if(isset($filename) and !empty($filename)){	
 		$folder = "image/" . $filename;
-		//$author = $_SESSION['username'];
+		/*$author = $_SESSION['username'];
 		// get from data
-		$update_id = mysqli_real_escape_string($conn, $_POST['update_id']);
+		$update_id = mysqli_real_escape_string(, $_POST['update_id']);
 		$title     = mysqli_real_escape_string($conn, $_POST['title']);
 		$author    = mysqli_real_escape_string($conn, $_POST['author']);
 		$body      = mysqli_real_escape_string($conn, $_POST['body']);
-		//$query1 = "insert into posts (photo) values ('$filename') where id = {$update_id}";
+		$query1 = "insert into posts (photo) values ('$filename') where id = {$update_id}";
 		$query = "UPDATE posts SET
 						 title  = '$title',
 						 photo  = '$filename',
 						 author = '$author',
 						 body   = '$body'
-				  WHERE  id     = {$update_id}";
-				
+				  WHERE  id     = {$update_id}";*/
+		$post = $funObj->EditPost($_REQUEST['title'],$_REQUEST['author'],$filename,$_REQUEST['body'],$_REQUEST['update_id']);
 		if (move_uploaded_file($tempname, $folder)) {
 			$msg = "Image uploaded successfully";
 		}else{
 			$msg = "Failed to upload image";
 		}
-		if(mysqli_query($conn, $query)){
+		if($post){
 			header('Location: index.php');
 		} else{
 			echo "Error" . mysqli_error($conn);
 		}
 	}}
 
-	//get id
-	$id = mysqli_real_escape_string($conn, $_GET['id']);
+	//get id from link
+	$id =  $_GET['id'];
 	//create query
 	$query = 'SELECT * FROM posts WHERE id ='.$id;
 

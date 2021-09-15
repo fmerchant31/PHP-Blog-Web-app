@@ -10,7 +10,7 @@
 		$folder = "image/" . $filename;
 		/*$author = $_SESSION['username'];*/
 		$title  = mysqli_real_escape_string($conn, $_POST['title']);
-		$author = $_session['username'];
+		$author = $_SESSION['username'];
 		$body   = mysqli_real_escape_string($conn, $_POST['body']);
 		$query = "INSERT INTO posts (title, author, photo, body) VALUES ('$title','$author','$filename','$body')";
 		if (move_uploaded_file($tempname, $folder)) {
@@ -42,7 +42,7 @@
 			</div>
 			<div class="form-group">
 				<label>Author</label>
-				<input type="text" name="author" class="form-control">
+				<input type="text" name="author" class="form-control" value="<?php echo $_SESSION['username'] ?>">
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlFile1">Add image</label>

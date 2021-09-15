@@ -23,8 +23,10 @@ session_start();
 		
 		$query1 = "Insert into comment (username,comment,post_id) VALUES ('$username','$comment','$id')";
 		$result2 = mysqli_query($conn,$query1);
-		//$rows = mysqli_num_rows($result2);
-
+		//$rows = mysqli_num_rows($conn,$result2);
+		if($result2){
+			header("location: post.php?id=$id");
+		}
 
 	}
 
@@ -37,7 +39,7 @@ session_start();
 	<div class="container">
 		<h1><?php echo $post['title']; ?></h1>
 		<p>Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author'] ?></p>
-		<img src="image/<?php echo $post['photo']; ?>" class="figure-img img-fluid rounded" alt="">
+		<img src="image/<?php echo $post['photo']; ?>" class="figure-img img-fluid rounded" alt=""  style="width:500px; height:500px;">
 		
 		<p><?php echo $post['body'] ?></p>
 		
@@ -54,7 +56,7 @@ session_start();
 			<div class="card-body">
 				<div class="card-text"><?php echo $com['comment']; ?></div>
 				<div class="card-text"><b><?php echo $com['username']; ?></b></div>
-				<div class="card-text"><a href="./deletecomment.php?id=<?php echo $com['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+				<div class="card-text"><a href="./deletecomment.php?id=<?php echo $com['id'];?>&id1=<? echo $_GET['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
 			</div>
 		</div><br>
 		<?php endforeach; ?>

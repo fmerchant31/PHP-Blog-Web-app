@@ -1,7 +1,8 @@
 <?php 
  session_start();
     require('config/config.php'); 
-	require('config/db.php'); 
+	require('config/db.php');  
+	//$data = new Databases;  
 
 	//create query
 	$results_per_page=3;

@@ -23,8 +23,9 @@ session_start();
 		//echo $username;
 		$query1 = "Insert into comment (username,comment,post_id) VALUES ('$username','$comment','$id')";
 		$result2 = mysqli_query($conn,$query1);
-		//$rows = mysqli_num_rows($result2);
+		//if(mysqli_num_rows($result2)){
 
+		
 
 	}
 
@@ -37,7 +38,7 @@ session_start();
 	<div class="container">
 		<h1><?php echo $post['title']; ?></h1>
 		<p>Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author'] ?></p>
-		<img src="admin/image/<?php echo $post['photo']; ?>" class="figure-img img-fluid rounded" alt="">
+		<img src="admin/image/<?php echo $post['photo']; ?>" onclick="window.location.reload(true);" class="figure-img img-fluid rounded" alt="" style="width:500px; height:500px;">
 		
 		<p><?php echo $post['body'] ?></p>
 		<?php if($_SESSION['username']==$post['author']):?>

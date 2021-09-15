@@ -16,6 +16,7 @@
            $result = mysqli_query($conn, $query);
 
            if ($result) {
+			   
            	header("Location:login.php");
            }
        }else{
