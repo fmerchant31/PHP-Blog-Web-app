@@ -1,36 +1,19 @@
 <?php 
-session_start();
-	require('config/config.php'); 
-	require('config/db.php'); 
-	$id = mysqli_real_escape_string($conn, $_GET['id']);
-	//create query
-	$query = 'SELECT * FROM posts WHERE id ='.$id;
-
-	//get result
-	$result = mysqli_query($conn, $query);
-
-	//fetch data
-	$post = mysqli_fetch_assoc($result);
-	$result = mysqli_query($conn, $query);
-	$sql = "SELECT * from comment where post_id=$id";
-	$result1 = mysqli_query($conn, $sql) or die (mysqli_error($sql));
-	$posts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
+	session_start();
+	require_once('classes/Post.php');
+	require_once('classes/Comment.php');
+	$id =$_GET['id'];
+	$post1 = $post->ShowPost($id);
+	$post = mysqli_fetch_assoc($post1);
+	$showComment = $comment->ShowComment($id);
+	$posts = mysqli_fetch_all($showComment, MYSQLI_ASSOC);
 	if (isset($_POST['submit'])){
-		$comment = stripcslashes($_POST['comment']);// remove backslashes
-        $comment = mysqli_real_escape_string($conn,$comment);
 		$username = $_SESSION['username'];
-		//echo $username;
-		$query1 = "Insert into comment (username,comment,post_id) VALUES ('$username','$comment','$id')";
-		$result2 = mysqli_query($conn,$query1);
-		//if(mysqli_num_rows($result2)){
-
-		
-
+		$addComment = $comment->AddComment($username, $id);
+		if($addComment){
+			header("location: post.php?id=$id");
+		}
 	}
-
-	
-    
 ?>
 <?php 
 	include('inc/header.php');

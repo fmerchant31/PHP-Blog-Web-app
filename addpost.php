@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+/* 	session_start();
     require('config/config.php'); 
 	require('config/db.php'); 
 	
@@ -8,7 +8,7 @@
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
 		if(isset($filename) and !empty($filename)){	
 		$folder = "image/" . $filename;
-		/*$author = $_SESSION['username'];*/
+		/*$author = $_SESSION['username'];
 		$title  = mysqli_real_escape_string($conn, $_POST['title']);
 		$author = $_SESSION['username'];
 		$body   = mysqli_real_escape_string($conn, $_POST['body']);
@@ -25,7 +25,25 @@
 		} else{
 			echo "Error" . mysqli_error($conn);
 		}
-	}
+	} */
+	session_start();
+	require('classes/Post.php');
+	if(isset($_POST['submit']) && isset($_FILES['uploadfile']) ){
+		$filename = $_FILES['uploadfile']['name'];
+		$tempname = $_FILES["uploadfile"]["tmp_name"];
+		if(isset($filename) and !empty($filename)){	
+			$folder = "admin/image/" . $filename;
+				if(move_uploaded_file($tempname, $folder)){
+					$author = stripcslashes($_POST['author']);
+					$post = $post->AddPost($author,$filename);
+					if($post)	{
+						header('Location: index.php');
+					} else	{
+						echo "Error" ;
+					}
+				}
+			}
+		}
 ?>
 
 <?php 

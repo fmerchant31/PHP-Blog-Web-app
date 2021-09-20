@@ -1,9 +1,8 @@
 <?php 
-   	require('config/config.php'); 
-	require('config/db.php'); 
-	
-		// get from data
+	require_once('../classes/User.php');
 		$id = $_GET['id'];
- 		$query = mysqli_query($conn, "DELETE FROM users WHERE id='$id'");
-        header('Location:users.php');	
+		$post = $user->DeleteUser($id);
+		 if($post){
+        	header('Location:users.php');	
+		}
 ?>

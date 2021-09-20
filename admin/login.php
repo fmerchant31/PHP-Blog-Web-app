@@ -1,34 +1,25 @@
 <?php 
-    require('config/config.php'); 
-	//require('config/db.php'); 
-	require_once('config/database.php');
-    $funObj = new Databases();  
+	require_once('../classes/User.php');
+	require_once('../classes/Post.php');
+ 
 ?>
 <?php 
-include'inc/header.php';
+	include'inc/header.php';
 
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-        	 $username = stripcslashes($_POST['username']);
-        	 $password = stripcslashes($_POST['password']);
- 
-           // $query = "SELECT username FROM admin WHERE username='$username' and password='$password'";
-		  
-		    /*$result = mysqli_query($conn,$query) ;
-			$row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-			  
-		     $rows = mysqli_num_rows($result);*/
-			 $post = $funObj->Login($username,$password);
-            if($post){
-				session_start();
-				$_SESSION['username'] = $username;
-				header("Location: index.php"); // Redirect user to index.php
-	        }
-			else{
-					echo "<div class='alert alert-danger'>Username/password is incorrect.</div>";
-					
-			}
-		}
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+		 $role=1;
+		 $post = $user->Login($role);
+        if($post==1){
+			session_start();
+			$_SESSION['username'] = $username;
+			header("Location: index.php"); // Redirect user to index.php
+	    }
 		else{
+				echo "<div class='alert alert-danger'>Username/password is incorrect.</div>";
+				
+		}
+	}
+	else{
 ?>
 	<!-- form begin -->
   <div class="row" style="padding-top: 40px;">

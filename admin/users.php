@@ -23,13 +23,9 @@
                 <tbody>
 
                 <?php 
-                    require('config/config.php'); 
-                    require('config/db.php'); 
-                    $selectquery = "Select * from users";
-                    $query = mysqli_query($conn,$selectquery) ;
-                    $nums = mysqli_num_rows($query);
-                    
-                    while($res = mysqli_fetch_array($query)){?>
+                    require('../classes/User.php');
+                    $selectquery = $user->ShowAllUser();
+                    while($res = mysqli_fetch_assoc($selectquery)){?>
 
                     <tr>
                         <td scope="row"><?php echo $res['id'];?></td>

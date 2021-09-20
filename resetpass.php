@@ -16,9 +16,9 @@ include'inc/header.php';
 				if($password1 == $password2)
 				{	
 				$password2 = md5($password2);
-				$query = "UPDATE users1 SET password='$password2' WHERE email='$key' ";  
+				$query = "UPDATE users SET password='$password2' WHERE email='$key' ";  
 				//echo "$query";
-				$result = mysqli_query($conn,$query) ;
+				$result = mysqli_query($conn,$query);
 				//echo "$result";
 					
 					if($result){
