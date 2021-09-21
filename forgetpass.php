@@ -1,6 +1,4 @@
 <?php 
-    require('config/config.php'); 
-	require('config/db.php'); 
 	require_once('classes/User.php');
 ?>
 <?php 
@@ -8,9 +6,7 @@ include'inc/header.php';
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
         	$email = stripcslashes($_POST['email']);
-           // $query = "SELECT email from users WHERE email='$email'";
 			$query = $user->forgetPassword($email);
-		   // $result = mysqli_query($conn,$query) ;
             if($query){
 				require_once('PHPMailer/src/PHPMailer.php');
 				include_once "PHPMailer/src/Exception.php";
