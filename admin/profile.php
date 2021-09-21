@@ -21,7 +21,7 @@ session_start();
 			<div class="col col-sm-4">
     		<div class="card-columns-fluid">
 			<div class="card  bg-light" style = "width: 22rem; " >
-			<img class="card-img-top" src="admin/image/<?php echo $post['photo']; ?>" alt="">
+			<img class="card-img-top" src="image/<?php echo $post['photo']; ?>" alt="">
 			<div class="card-body">
 				<h3 class="card-title text-center"><?php echo $post['username']; ?></h3>
 				

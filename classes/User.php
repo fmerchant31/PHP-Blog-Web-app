@@ -39,7 +39,7 @@
             }
         }
         public function userProfile(){
-            $username = mysqli_real_escape_string($this->con, $_SESSION['username']);
+            $username = mysqli_real_escape_string($this->con, $_GET['username']);
             $sql = mysqli_query($this->con,"SELECT * FROM users WHERE username= '{$username}'");
             return $sql;
         }
