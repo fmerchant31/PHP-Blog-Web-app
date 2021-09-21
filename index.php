@@ -7,24 +7,16 @@
 
 	//create query
 	$results_per_page=3;
-	$num_of_rows = $post->ShowAllPost();
-	//$result = mysqli_query($conn, $sql);
+	$num_of_rows = $post->ShowAllPost();;
 	if(!isset($_GET['page'])){
             $page=1;
         }else{
             $page=$_GET['page'];
         }
 	$i=0;
-	//$num_of_rows = mysqli_num_rows($result);
 	$total_pages=ceil($num_of_rows/$results_per_page);
 	$start_limit=($page-1)*$results_per_page;
-	//$query = "SELECT * FROM posts ORDER BY created_at DESC LIMIT $start_limit, $results_per_page";
 		$query = $post->ShowPostPagination($start_limit, $results_per_page);
-	//get result
-	//$result = mysqli_query($conn, $query) or die (mysqli_error($query));
-	
-
-	//fetch data
 	$posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
 	
 

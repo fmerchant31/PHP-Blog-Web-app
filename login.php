@@ -9,7 +9,8 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
 		 $role=0;
 		 $post = $user->Login($role);
-        if($post==1){
+		 $username = stripslashes($_REQUEST['username']);
+        if($post){
 			session_start();
 			$_SESSION['username'] = $username;
 			header("Location: index.php"); // Redirect user to index.php

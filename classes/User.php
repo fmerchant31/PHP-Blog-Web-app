@@ -38,20 +38,19 @@
                 }
             }
         }
-        public function forgetPassword(){
+        public function forgetPassword($email){
             $sql = mysqli_query($this->con,"SELECT email from users WHERE email='$email'");
             return $sql;
         }
-        public function forgetPassword(){
+        public function resetPassword($key){
             $password1 = stripcslashes($_POST['pswd1']);
 			$password2 = stripcslashes($_POST['pswd2']);
 		    if($password1 == $password2){	
 				$password2 = md5($password2);
-				$query = "UPDATE users SET password='$password2' WHERE email='$key' ";  
-				//echo "$query";
-				$result = mysqli_query($conn,$query);
-                return $result;
-                
+				$query = mysqli_query($this->con,"UPDATE users SET password='$password2' WHERE email='$key' ");  
+                return $query;
+            }else{
+                echo "<div class='alert alert-danger'>New Password and confirm password are not same</div>";
             }
         }
 

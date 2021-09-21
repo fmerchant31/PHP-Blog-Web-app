@@ -9,6 +9,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
 		 $role=1;
 		 $post = $user->Login($role);
+		 $username = stripslashes($_REQUEST['username']);
         if($post==1){
 			session_start();
 			$_SESSION['username'] = $username;

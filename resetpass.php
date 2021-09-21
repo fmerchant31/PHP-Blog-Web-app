@@ -1,41 +1,22 @@
 <?php 
-    require('config/config.php'); 
-	require('config/db.php'); 
+	require_once('classes/User.php');
 ?>
 <?php 
 include'inc/header.php';
 
 	$key= $_GET['key'];
-//echo "$key";
 	if($_SERVER["REQUEST_METHOD"] == "POST")  {
-				
-			$password1 = stripcslashes($_POST['pswd1']);
-			$password2 = stripcslashes($_POST['pswd2']);
-			
-            
-				if($password1 == $password2)
-				{	
-				$password2 = md5($password2);
-				$query = "UPDATE users SET password='$password2' WHERE email='$key' ";  
-				//echo "$query";
-				$result = mysqli_query($conn,$query);
-				//echo "$result";
-					
-					if($result){
-						echo "<div class='alert alert-success'>Password is reset.</div>";
-						//header("Location: register.php"); // Redirect user to index.php
-					}
-					else{
-							echo "<div class='alert alert-danger'>Username/password is incorrect.</div>";
-							
-					}
-				}
-				else{
-					echo "<div class='alert alert-danger'>New Password and confirm password are not same</div>";
-				}
-			}
-			
+		$result = $user->resetPassword($key);
+		if($result){
+			echo "<div class='alert alert-success'>Password is reset.</div>";
+			header("Location: register.php"); // Redirect user to index.php
+		}
 		else{
+				echo "<div class='alert alert-danger'>Username/password is incorrect.</div>";
+		}			
+	}
+			
+	else{
 ?>
 	<!-- form begin -->
   <div class="row" style="padding-top: 40px;">
