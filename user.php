@@ -1,15 +1,16 @@
 <?php 
 session_start();
-    require('config/config.php'); 
-	require('config/db.php');
-    $username = mysqli_real_escape_string($conn, $_SESSION['username']);
+    
+	require_once('classes/User.php');
+   /*  $username = mysqli_real_escape_string($conn, $_SESSION['username']);
 	//create query
 	$query = "SELECT * FROM users WHERE username= '{$username}'";
 
 	//get result
 	$result = mysqli_query($conn, $query);
-
+ */
 	//fetch data
+	$result = $user->userProfile();
 	$post = mysqli_fetch_assoc($result);
 
 	 

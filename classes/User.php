@@ -38,6 +38,11 @@
                 return $qr;
             }
         }
+        public function userProfile(){
+            $username = mysqli_real_escape_string($this->con, $_SESSION['username']);
+            $sql = mysqli_query($this->con,"SELECT * FROM users WHERE username= '{$username}'");
+            return $sql;
+        }
         public function EditUser(){
             $update_id = mysqli_real_escape_string($this->con, $_POST['update_id']);
             $firstname = mysqli_real_escape_string($this->con,$_POST['firstname']);
