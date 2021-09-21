@@ -1,7 +1,7 @@
 <?php 
 session_start();
     
-	require_once('classes/User.php');
+	require_once('../classes/User.php');
 	$result = $user->userProfile();
 	$post = mysqli_fetch_assoc($result);	 
 ?>

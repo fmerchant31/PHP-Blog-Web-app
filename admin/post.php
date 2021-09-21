@@ -20,7 +20,7 @@
 ?>
 	<div class="container">
 		<h1><?php echo $post['title']; ?></h1>
-		<p>Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author']; ?></p>
+		<p>Created On <?php echo $post['created_at']; ?> by <a href="profile.php"> <?php  echo $post['author']; ?></a></p>
 		<img src="image/<?php echo $post['photo']; ?>" class="figure-img img-fluid rounded" alt=""  style="width:500px; height:500px;">
 		<p><?php echo $post['body'] ?></p>
 			<hr>
