@@ -1,6 +1,32 @@
 <?php
     require_once('Databases.php');
     class User extends Databases { 
+        public function register($filename){
+            $firstname = stripcslashes($_POST['firstname']);// remove backslashes
+            $firstame = mysqli_real_escape_string($this->con,$firstname);
+			$lastname = stripcslashes($_POST['lastname']);// remove backslashes
+			$lastname = mysqli_real_escape_string($this->con,$lastname);
+            $username = stripcslashes($_POST['username']);// remove backslashes
+            $username = mysqli_real_escape_string($this->con,$username);
+            $email = stripcslashes($_POST['email']);
+            $email = mysqli_real_escape_string($this->con,$email);
+            $password = stripslashes($_POST['password']);
+		    $password = md5($password);
+            $password = mysqli_real_escape_string($this->con, $password);
+		    $mobile = stripcslashes($_POST['mobile']);// remove backslashes
+            $mobile = mysqli_real_escape_string($this->con,$mobile);
+		    $address = stripcslashes($_POST['address']);// remove backslashes
+            $address = mysqli_real_escape_string($this->con,$address);
+            $qr = mysqli_query($this->con,"SELECT username,email,mobile FROM users WHERE username='$username' or email='$email' or mobile='$mobile'");
+            $rows = mysqli_num_rows($qr);
+            if($rows>0){
+				echo "<div class='alert alert-danger'>Username/email/mobile already exist. Please sign-up with another.</div>";
+	        }
+			else{
+				$query = mysqli_query($this->con,"Insert into `users`(firstname,lastname,username,email,password,photo,mobile,address) VALUES('$firstname','$lastname','$username','$email','$password','$filename','$mobile','$address')");		
+                return $query;
+            }
+        }
         public function Login($role){
         $username  = mysqli_real_escape_string($this->con, $_POST['username']);
 		$password = mysqli_real_escape_string($this->con, $_POST['password']);
