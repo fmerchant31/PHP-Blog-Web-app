@@ -1,14 +1,16 @@
 <?php 
     session_start();
-    require('config/config.php'); 
-	require('config/db.php'); 	
+   // require('config/config.php'); 
+	//require('config/db.php'); 
+	require('../classes/User.php'); 
+	/*$funObj = new User();	
 	if(isset($_POST['submit']) && isset($_FILES['uploadfile'])){
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
 		if(isset($filename) and !empty($filename)){	
 		$folder = "image/" . $filename;
             
-		$update_id = mysqli_real_escape_string($conn, $_POST['update_id']);
+		/*$update_id = mysqli_real_escape_string($conn, $_POST['update_id']);
            // remove backslashes
         $firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
         $lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
@@ -30,13 +32,14 @@
                         mobile   = '$mobile',
                         address  = '$address'
                 WHERE  id = {$update_id}";
-            
+        
 		if (move_uploaded_file($tempname, $folder)) {
 			$msg = "Image uploaded successfully";
 		}else{
 			$msg = "Failed to upload image";
-		}
-        if(mysqli_query($conn, $query)){
+		}*/
+		$post = $user->EditUser();
+        if($post){
             header('Location: index.php');
         } else{
             echo "Error" . mysqli_error($conn);
@@ -44,13 +47,13 @@
 	}
 	}
 	//get id
-	$id = mysqli_real_escape_string($conn, $_GET['id']);
+	$id = $_GET['id'];
 	//create query
-	$query = "SELECT * FROM users WHERE id =$id";
+	//$query = "SELECT * FROM users WHERE id =$id";
 
 	//get result
-	$result = mysqli_query($conn, $query);
-
+	//$result = mysqli_query($conn, $query);
+	$result = $user->SelectUser($id);
 	//fetch data
 	$post = mysqli_fetch_assoc($result);
 ?>

@@ -1,48 +1,28 @@
 <?php 
-session_start();
-	require('config/config.php'); 
-	require('config/db.php'); 
-	$id = mysqli_real_escape_string($conn, $_GET['id']);
-	//create query
-	$query = 'SELECT * FROM posts WHERE id ='.$id;
-
-	//get result
-	$result = mysqli_query($conn, $query);
-
-	//fetch data
-	$post = mysqli_fetch_assoc($result);
-	$result = mysqli_query($conn, $query);
-	$sql = "SELECT * from comment where post_id=$id";
-	$result1 = mysqli_query($conn, $sql) or die (mysqli_error($sql));
-	$posts = mysqli_fetch_all($result1, MYSQLI_ASSOC);
-
+	session_start();
+	require_once('../classes/Post.php');
+	require_once('../classes/Comment.php');
+	$id =$_GET['id'];
+	$post1 = $post->ShowPost($id);
+	$post = mysqli_fetch_assoc($post1);
+	$showComment = $comment->ShowComment($id);
+	$posts = mysqli_fetch_all($showComment, MYSQLI_ASSOC);
 	if (isset($_POST['submit'])){
-		$comment = stripcslashes($_POST['comment']);// remove backslashes
-        $comment = mysqli_real_escape_string($conn,$comment);
 		$username = $_SESSION['username'];
-		
-		$query1 = "Insert into comment (username,comment,post_id) VALUES ('$username','$comment','$id')";
-		$result2 = mysqli_query($conn,$query1);
-		//$rows = mysqli_num_rows($conn,$result2);
-		if($result2){
+		$addComment = $comment->AddComment($username, $id);
+		if($addComment){
 			header("location: post.php?id=$id");
 		}
-
 	}
-
-	
-    
 ?>
 <?php 
 	include('inc/header.php');
 ?>
 	<div class="container">
 		<h1><?php echo $post['title']; ?></h1>
-		<p>Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author'] ?></p>
+		<p>Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author']; ?></p>
 		<img src="image/<?php echo $post['photo']; ?>" class="figure-img img-fluid rounded" alt=""  style="width:500px; height:500px;">
-		
 		<p><?php echo $post['body'] ?></p>
-		
 			<hr>
 			<a href="editpost.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Edit</a> || <a href="deletepost.php?id=<?php echo $post['id']; ?>" class="btn btn-danger">Delete</a>
 		
