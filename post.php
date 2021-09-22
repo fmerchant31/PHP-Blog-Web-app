@@ -11,7 +11,7 @@
 		$username = $_SESSION['username'];
 		$addComment = $comment->AddComment($username, $id);
 		if($addComment){
-			header("location: post.php?id=$id");
+			header("location: post.php?id=$id#comment");
 		}
 	}
 ?>
@@ -30,7 +30,7 @@
 		<?php endif; ?>
 	</div>
 	
-	<div class="container">
+	<div class="container" id="comment">
 	<h2 class="text-center">Comments</h2>
 	<?php foreach($posts as $com): ?>
 		<div class="card"  style="width: 20rem; margin-left:30%">
@@ -39,7 +39,7 @@
 				<div class="card-text"><?php echo $com['comment']; ?></div>
 				<div class="card-text"><b><?php echo $com['username']; ?></b> 
 				<?php if(($com['username'])==($_SESSION['username'])):?>
-					<a href="./deletecomment.php?id=<?php echo $com['id'];?>&id1=<? echo $_GET['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+					<a href="./deletecomment.php?id=<?php echo $com['id'];?>&id1=<?php echo $_GET['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
 				<?php endif; ?>
 				</div>
 				

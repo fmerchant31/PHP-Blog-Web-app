@@ -36,7 +36,8 @@
 			<div class="card-body">
 				<div class="card-text"><?php echo $com['comment']; ?></div>
 				<div class="card-text"><b><?php echo $com['username']; ?></b></div>
-				<div class="card-text"><a href="./deletecomment.php?id=<?php echo $com['id'];?>&id1=<? echo $_GET['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+				<?php $id1=$_GET['id'];?>
+				<div class="card-text"><a href="./deletecomment.php?id=<?php echo $com['id'];?>&id1=<?php echo $_GET['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
 			</div>
 		</div><br>
 		<?php endforeach; ?>
