@@ -37,7 +37,13 @@
 		
 			<div class="card-body">
 				<div class="card-text"><?php echo $com['comment']; ?></div>
-				<div class="card-text"><b><?php echo $com['username']; ?></b></div>
+				<div class="card-text"><b><?php echo $com['username']; ?></b> 
+				<?php if(($com['username'])==($_SESSION['username'])):?>
+					<a href="./deletecomment.php?id=<?php echo $com['id'];?>&id1=<? echo $_GET['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				<?php endif; ?>
+				</div>
+				
+
 			</div>
 		</div><br>
 		<?php endforeach; ?>

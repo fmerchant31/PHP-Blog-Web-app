@@ -24,16 +24,19 @@
     <ul class="navbar-nav ml-auto">
       
 
+      
+    <?php if(isset($_SESSION['username'])==true):?>
       <li class="nav-item">
-          <?php if(isset($_SESSION['username'])==true):?>
-            
-            <a class="nav-link" href="./logout.php">Logout</a>
-          <?php else :?>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="./login.php">Login</a>
-            </li>
-            <?php endif; ?>
+        <a class="nav-link active" href="../php-blog-web-app/user.php?username=<?php echo $_SESSION['username']; ?>">Welcome - <?php echo $_SESSION['username']; ?> </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./logout.php">Logout</a>
+      </li>
+    <?php else :?>
+      <li class="nav-item">
+        <a class="nav-link" href="./login.php">Login</a>
+      </li>
+      <?php endif; ?>
       </li>
 
     </ul>
