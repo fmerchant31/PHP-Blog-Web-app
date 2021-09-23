@@ -1,11 +1,8 @@
 <?php 
  session_start();
-    //require('config/config.php'); 
-	//require('config/db.php');
-	require_once('classes/Post.php');  
-	//$data = new Databases;  
 
-	//create query
+	require_once('classes/Post.php');
+	$post = new Post();  
 	$results_per_page=3;
 	$num_of_rows = $post->ShowAllPost();;
 	if(!isset($_GET['page'])){

@@ -1,29 +1,28 @@
 <?php
-session_start();
-require('../classes/User.php');
-if (isset($_POST['submit']) && isset($_FILES['uploadfile'])) {
-	$filename = $_FILES['uploadfile']['name'];
-	$tempname = $_FILES["uploadfile"]["tmp_name"];
-	if (isset($filename) and !empty($filename)) {
-		$folder = "image/" . $filename;
-		if (move_uploaded_file($tempname, $folder)) {
-			$msg = "Image uploaded successfully";
-		} else {
-			$msg = "Failed to upload image";
-		}
-		$post = $user->EditUser($filename);
-		if ($post) {
-			header('Location: index.php');
-		} else {
-			echo "Error";
+	session_start();
+	require('../classes/User.php');
+	if (isset($_POST['submit']) && isset($_FILES['uploadfile'])) {
+		$filename = $_FILES['uploadfile']['name'];
+		$tempname = $_FILES["uploadfile"]["tmp_name"];
+		if (isset($filename) and !empty($filename)) {
+			$folder = "image/" . $filename;
+			if (move_uploaded_file($tempname, $folder)) {
+				$msg = "Image uploaded successfully";
+			} else {
+				$msg = "Failed to upload image";
+			}
+			$post = $user->EditUser($filename);
+			if ($post) {
+				header('Location: index.php');
+			} else {
+				echo "Error";
+			}
 		}
 	}
-}
-$id = $_GET['id'];
-
-$result = $user->SelectUser($id);
-//fetch data
-$post = mysqli_fetch_assoc($result);
+	$id = $_GET['id'];
+	
+	$result = $user->SelectUser($id);
+	$post = mysqli_fetch_assoc($result);
 ?>
 <?php
 include 'inc/header.php';

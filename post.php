@@ -2,6 +2,8 @@
 	session_start();
 	require_once('classes/Post.php');
 	require_once('classes/Comment.php');
+	$post = new Post();
+	$comment = new Comment();
 	$id =$_GET['id'];
 	$post1 = $post->ShowPost($id);
 	$post = mysqli_fetch_assoc($post1);

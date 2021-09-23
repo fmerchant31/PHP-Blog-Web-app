@@ -24,6 +24,7 @@
 
                 <?php 
                     require('../classes/User.php');
+                    $user = new User();
                     $selectquery = $user->ShowAllUser();
                     while($res = mysqli_fetch_assoc($selectquery)){?>
 

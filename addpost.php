@@ -1,6 +1,7 @@
 <?php 
 	session_start();
 	require('classes/Post.php');
+	$post = new Post();
 	if(isset($_POST['submit']) && isset($_FILES['uploadfile']) ){
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];

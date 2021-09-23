@@ -1,5 +1,5 @@
 <?php
-require_once('Databases.php');
+    require_once('Databases.php');
     class Post extends Databases{  
       public function ShowAllPost(){
           $showA = mysqli_query($this->con,"SELECT * FROM posts");
@@ -18,9 +18,7 @@ require_once('Databases.php');
         $title  = mysqli_real_escape_string($this->con, $_POST['title']);
 	    $body   = mysqli_real_escape_string($this->con, $_POST['body']);
         $add = mysqli_query($this->con,"INSERT INTO posts (title, author, photo, body) VALUES ('$title','$author','$filename','$body')");  
-        return $add;
-              
-          
+        return $add;      
       }  
       public function EditPost($author,$filename){
           $update_id = mysqli_real_escape_string($this->con, $_POST['update_id']);
@@ -41,6 +39,4 @@ require_once('Databases.php');
       }
 
     }
-GLOBAL $post;
-$post = new Post();
 ?>

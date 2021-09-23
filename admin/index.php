@@ -2,7 +2,8 @@
  session_start();
     //require('config/config.php'); 
 	//require('config/db.php');
-	require_once('../classes/Post.php');  
+	require_once('../classes/Post.php'); 
+	$post = new Post(); 
 	//$data = new Databases;  
 
 	//create query
