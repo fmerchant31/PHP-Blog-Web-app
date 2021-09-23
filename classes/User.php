@@ -43,31 +43,30 @@
             $sql = mysqli_query($this->con,"SELECT * FROM users WHERE username= '{$username}'");
             return $sql;
         }
-        public function EditUser(){
+        public function EditUser(/*$firstname, $lastname, $username,$email,$mobile,$address,$update_id,*/$filename){
             $update_id = mysqli_real_escape_string($this->con, $_POST['update_id']);
             $firstname = mysqli_real_escape_string($this->con,$_POST['firstname']);
             $lastname = mysqli_real_escape_string($this->con,$_POST['lastname']);
-            $username = mysqli_real_escape_strig($this->con,$_POST['username']);
+            $username = mysqli_real_escape_string($this->con,$_POST['username']);
             $email = mysqli_real_escape_string($this->con,$_POST['email']);
             $mobile = mysqli_real_escape_string($this->con,$_POST['mobile']);
             $address = mysqli_real_escape_string($this->con,$_POST['address']);
-            $filename = $_FILES['uploadfile']['name'];
+            /*$filename = $_FILES['uploadfile']['name'];
             $tempname = $_FILES["uploadfile"]["tmp_name"];
             if(isset($filename) and !empty($filename)){	
                 $folder = "../admin/image/" . $filename;
-                if(move_uploaded_file($tempname, $folder)){
-                    $sql = mysqli_query($this->con,"UPDATE users SET
-                                                firstname= '$firstname',
-                                                lastname = '$lastname',
-                                                username = '$username',
-                                                email    = '$email',
-                                                photo    = '$filename',
-                                                mobile   = '$mobile',
-                                                address  = '$address'
-                                            WHERE  id = {$update_id}");
-                    return $sql;
-                }
-            }
+                if(move_uploaded_file($tempname, $folder)){ */
+            $sql = mysqli_query($this->con,"UPDATE users SET
+                                        firstname= '$firstname',
+                                        lastname = '$lastname',
+                                        username = '$username',
+                                        email    = '$email',
+                                        photo    = '$filename',
+                                        mobile   = '$mobile',
+                                        address  = '$address'  
+                                    WHERE  id = {$update_id}");
+            return $sql;
+                
         }
         public function forgetPassword($email){
             $sql = mysqli_query($this->con,"SELECT email from users WHERE email='$email'");

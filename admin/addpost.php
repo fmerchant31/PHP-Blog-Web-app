@@ -6,17 +6,17 @@
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
 		if(isset($filename) and !empty($filename)){	
 			$folder = "image/" . $filename;
-				if(move_uploaded_file($tempname, $folder)){
-					$author = mysqli_real_escape_string($this->con, $_POST['author']);
-					$post = $post->AddPost($author,$filename);
-					if($post)	{
-						header('Location: index.php');
-						} 
-					else	{
-						echo "Error" . mysqli_error($conn);
-					}
+			if(move_uploaded_file($tempname, $folder)){
+				$author = mysqli_real_escape_string($this->con, $_POST['author']);
+				$post = $post->AddPost($author,$filename);
+				if($post)	{
+					header('Location: index.php');
+					} 
+				else	{
+					echo "Error" . mysqli_error($conn);
 				}
 			}
+			
 		}
 	}
 ?>

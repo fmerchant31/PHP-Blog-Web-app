@@ -1,34 +1,31 @@
 <?php 
-session_start();
-   // require('config/config.php'); 
-	//require('config/db.php'); 
-	require_once('../classes/Post.php');
-   // $funObj = new Databases(); 
-	
-   	if(isset($_POST['submit']) && isset($_FILES['uploadfile'])){
+	session_start();
+	require('../classes/Post.php'); 
+	if(isset($_POST['submit']) && isset($_FILES['uploadfile'])){
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
+		$author = stripcslashes($_POST['author']);
 		if(isset($filename) and !empty($filename)){	
 			$folder = "image/" . $filename;
-				if(move_uploaded_file($tempname, $folder)){
-				$author = $_SESSION['username'];
-				$post = $post->EditPost($author,$filename);
-				
-				if($post){
-					header('Location: index.php');
-				} else{
-					echo "Error";
-				}
+      if (move_uploaded_file($tempname, $folder)) {
+				$msg = "Image uploaded successfully";
+			}else{
+				$msg = "Failed to upload image";
 			}
+			$posts = $post->EditPost($author,$filename);
+      if($posts){
+          header('Location: index.php');
+      } else{
+        echo "Error";
+      }
 		}
 	}
-
-	//get id from link
-	$id =  $_GET['id'];
-	$result = $post->ShowPost($id);
-	//fetch data
-	$post = mysqli_fetch_assoc($result);
-
+	
+	if(isset($_GET['id'])){
+		$id = $_GET['id'];
+		$result = $post->ShowPost($id);
+		$post = mysqli_fetch_assoc($result);
+	}
 ?>
 
 <?php 
