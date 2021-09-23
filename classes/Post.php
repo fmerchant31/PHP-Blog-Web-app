@@ -44,6 +44,7 @@ require_once('Databases.php');
                                     photo  = '$filename',
                                     author = '$author',
                                     body   = '$body'
+                                    updated_id = now()
                             wHERE id     = {$update_id}");
             return $edit;
                 

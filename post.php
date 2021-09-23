@@ -20,7 +20,8 @@
 ?>
 	<div class="container">
 		<h1><?php echo $post['title']; ?></h1>
-		<p>Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author'] ?></p>
+		<p>Created On: <?php echo $post['created_at']; ?> by <b> <?php  echo $post['author'] ?> </b><br>
+		Updated On: <?php echo $post['updated_at']; ?> </p>
 		<img src="admin/image/<?php echo $post['photo']; ?>" onclick="window.location.reload(true);" class="figure-img img-fluid rounded" alt="" style="width:500px; height:500px;">
 		
 		<p><?php echo $post['body'] ?></p>
