@@ -1,33 +1,19 @@
 <?php 
- session_start();
-    //require('config/config.php'); 
-	//require('config/db.php');
+ 	session_start();
 	require_once('../classes/Post.php'); 
 	$post = new Post(); 
-	//$data = new Databases;  
-
-	//create query
 	$results_per_page=3;
 	$num_of_rows = $post->ShowAllPost();
-	//$result = mysqli_query($conn, $sql);
 	if(!isset($_GET['page'])){
             $page=1;
         }else{
             $page=$_GET['page'];
         }
 	$i=0;
-	//$num_of_rows = mysqli_num_rows($result);
 	$total_pages=ceil($num_of_rows/$results_per_page);
 	$start_limit=($page-1)*$results_per_page;
-	//$query = "SELECT * FROM posts ORDER BY created_at DESC LIMIT $start_limit, $results_per_page";
-		$query = $post->ShowPostPagination($start_limit, $results_per_page);
-	//get result
-	//$result = mysqli_query($conn, $query) or die (mysqli_error($query));
-	
-
-	//fetch data
+	$query = $post->ShowPostPagination($start_limit, $results_per_page);
 	$posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
-	
 
 ?>
 

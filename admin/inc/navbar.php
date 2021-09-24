@@ -27,7 +27,7 @@
       
     <?php if(isset($_SESSION['username'])==true):?>
       <li class="nav-item">
-        <a class="nav-link active" href="../php-blog-web-app/user.php?username=<?php echo $_SESSION['username']; ?>">Welcome - <?php echo $_SESSION['username']; ?> </a>
+        <a class="nav-link active" href="./profile.php?username=<?php echo $_SESSION['username']; ?>">Welcome - <?php echo $_SESSION['username']; ?> </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./logout.php">Logout</a>

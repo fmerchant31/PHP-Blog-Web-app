@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require('../classes/User.php');
+	$user = new User();
 	if (isset($_POST['submit']) && isset($_FILES['uploadfile'])) {
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
@@ -20,7 +21,7 @@
 		}
 	}
 	$id = $_GET['id'];
-	
+
 	$result = $user->SelectUser($id);
 	$post = mysqli_fetch_assoc($result);
 ?>
