@@ -17,6 +17,13 @@
         $mobile = mysqli_real_escape_string($this->con,$mobile);
         $address = stripcslashes($_POST['address']);// remove backslashes
         $address = mysqli_real_escape_string($this->con,$address);
+        if(array_key_exists('phoneNumber', $_POST))
+        { 
+            if(!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $mobile))
+            {
+                $error = "<div class='alert alert-danger'>Invalid phone number</div>";
+            }
+        }
         $qr = mysqli_query($this->con,"SELECT username,email,mobile FROM users WHERE username='$username' or email='$email' or mobile='$mobile'");
         $rows = mysqli_num_rows($qr);
         if($rows>0){
@@ -51,6 +58,10 @@
           $email = mysqli_real_escape_string($this->con,$_POST['email']);
           $mobile = mysqli_real_escape_string($this->con,$_POST['mobile']);
           $address = mysqli_real_escape_string($this->con,$_POST['address']);
+          
+              if(!preg_match('/^[0-9]{10-10}\z/', $mobile)){
+                echo "<div class='alert alert-danger'>Invalid Mobile number</div>";
+              }
           $sql = mysqli_query($this->con,"UPDATE users SET
                                       firstname= '$firstname',
                                       lastname = '$lastname',

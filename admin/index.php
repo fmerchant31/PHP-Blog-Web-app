@@ -1,7 +1,9 @@
 <?php 
  	session_start();
-	require_once('../classes/Post.php'); 
+	require_once('../classes/Post.php');
+	require_once('../classes/User.php'); 
 	$post = new Post(); 
+	$User = new User(); 
 	$results_per_page=3;
 	$num_of_rows = $post->ShowAllPost();
 	if(!isset($_GET['page'])){

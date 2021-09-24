@@ -33,6 +33,9 @@
               <a class="nav-link" href="./login.php">Login</a>
             </li>
             <?php endif; ?>
+            <li class="nav-item">
+              <a class="nav-link" href="./adminpanel.php">Admin</a>
+            </li>
       </li>
 
     </ul>

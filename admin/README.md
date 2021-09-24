@@ -1,2 +1,4 @@
 # php-simple-blog
-This project for beginners 
+All blog functinality
+-Two panels Users and Admin.
+
