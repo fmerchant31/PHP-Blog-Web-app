@@ -12,9 +12,13 @@
 			if (move_uploaded_file($tempname, $folder)) {
 				$result = $user->register($filename);
 				if ($result) {
+					echo $result;
 					header("Location:login.php");
+				}else{
+					echo "error";
 				}
-			}else{
+			}
+			else{
 				$msg = "Failed to upload image";
 			} 
 		}

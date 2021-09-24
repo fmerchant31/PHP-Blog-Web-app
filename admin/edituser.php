@@ -16,7 +16,7 @@
 			if ($post) {
 				header('Location: index.php');
 			} else {
-				echo "Error";
+				echo "<div class='alert alert-danger'>Resolve this!</div>";
 			}
 		}
 	}

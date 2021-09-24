@@ -17,20 +17,17 @@
         $mobile = mysqli_real_escape_string($this->con,$mobile);
         $address = stripcslashes($_POST['address']);// remove backslashes
         $address = mysqli_real_escape_string($this->con,$address);
-        if(array_key_exists('phoneNumber', $_POST))
-        { 
-            if(!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $mobile))
-            {
-                $error = "<div class='alert alert-danger'>Invalid phone number</div>";
-            }
-        }
         $qr = mysqli_query($this->con,"SELECT username,email,mobile FROM users WHERE username='$username' or email='$email' or mobile='$mobile'");
         $rows = mysqli_num_rows($qr);
         if($rows>0){
     	    echo "<div class='alert alert-danger'>Username/email/mobile already exist. Please sign-up with another.</div>";
-        }
-      	else{
-      		$query = mysqli_query($this->con,"Insert into `users`(firstname,lastname,username,email,password,photo,mobile,address) VALUES('$firstname','$lastname','$username','$email','$password','$filename','$mobile','$address')");		
+        }else if(strlen($mobile)<10 && (!preg_match("/^[6-9]\d{9}$/",$mobile))){
+            echo "<div class='alert alert-danger'>Invalid phone number</div>";
+        }else{
+            $roles = 0;
+      		$query = mysqli_query($this->con,"INSERT INTO users (firstname, lastname, username, email, password, photo, mobile, address, roles) VALUES ('$firstname','$lastname','$username','$email','$password','$filename','$mobile','$address','$roles')");		
+            var_dump($query);
+            echo mysqli_error($this->con);
             return $query;
         }
       }
@@ -58,10 +55,9 @@
           $email = mysqli_real_escape_string($this->con,$_POST['email']);
           $mobile = mysqli_real_escape_string($this->con,$_POST['mobile']);
           $address = mysqli_real_escape_string($this->con,$_POST['address']);
-          
-              if(!preg_match('/^[0-9]{10-10}\z/', $mobile)){
-                echo "<div class='alert alert-danger'>Invalid Mobile number</div>";
-              }
+          if(strlen($mobile)<10 && (!preg_match("/^[6-9]\d{9}$/",$mobile))){
+              echo "<div class='alert alert-danger'>Invalid phone number</div>";
+          }else{
           $sql = mysqli_query($this->con,"UPDATE users SET
                                       firstname= '$firstname',
                                       lastname = '$lastname',
@@ -72,6 +68,7 @@
                                       address  = '$address'  
                                   WHERE  id = {$update_id}");
           return $sql;
+          }
               
       }
       public function forgetPassword($email){
