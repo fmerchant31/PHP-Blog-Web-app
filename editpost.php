@@ -5,7 +5,7 @@
 	if(isset($_POST['submit']) && isset($_FILES['uploadfile'])){
 		$filename = $_FILES['uploadfile']['name'];
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
-		$author = stripcslashes($_POST['author']);
+		$author = $_SESSION['username'];
 		if(isset($filename) and !empty($filename)){	
 			$folder = "image/" . $filename;
       if (move_uploaded_file($tempname, $folder)) {

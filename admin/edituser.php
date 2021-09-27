@@ -1,29 +1,29 @@
 <?php
-	session_start();
-	require('../classes/User.php');
-	$user = new User();
-	if (isset($_POST['submit']) && isset($_FILES['uploadfile'])) {
-		$filename = $_FILES['uploadfile']['name'];
-		$tempname = $_FILES["uploadfile"]["tmp_name"];
-		if (isset($filename) and !empty($filename)) {
-			$folder = "image/" . $filename;
-			if (move_uploaded_file($tempname, $folder)) {
-				$msg = "Image uploaded successfully";
-			} else {
-				$msg = "Failed to upload image";
-			}
-			$post = $user->EditUser($filename);
-			if ($post) {
-				header('Location: index.php');
-			} else {
-				echo "<div class='alert alert-danger'>Resolve this!</div>";
-			}
+session_start();
+require('../classes/User.php');
+$user = new User();
+if (isset($_POST['submit']) && isset($_FILES['uploadfile'])) {
+	$filename = $_FILES['uploadfile']['name'];
+	$tempname = $_FILES["uploadfile"]["tmp_name"];
+	if (isset($filename) and !empty($filename)) {
+		$folder = "image/" . $filename;
+		if (move_uploaded_file($tempname, $folder)) {
+			$msg = "Image uploaded successfully";
+		} else {
+			$msg = "Failed to upload image";
+		}
+		$post = $user->EditUser($filename);
+		if ($post) {
+			header('Location: index.php');
+		} else {
+			echo "<div class='alert alert-danger'>Resolve this!</div>";
 		}
 	}
-	$id = $_GET['id'];
+}
+$id = $_GET['id'];
 
-	$result = $user->SelectUser($id);
-	$post = mysqli_fetch_assoc($result);
+$result = $user->SelectUser($id);
+$post = mysqli_fetch_assoc($result);
 ?>
 <?php
 include 'inc/header.php';

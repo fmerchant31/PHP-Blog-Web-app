@@ -13,10 +13,8 @@
 	$i=0;
 	$total_pages=ceil($num_of_rows/$results_per_page);
 	$start_limit=($page-1)*$results_per_page;
-		$query = $post->ShowPostPagination($start_limit, $results_per_page);
+	$query = $post->ShowPostPagination($start_limit, $results_per_page);
 	$posts = mysqli_fetch_all($query, MYSQLI_ASSOC);
-	
-
 ?>
 
 <?php 

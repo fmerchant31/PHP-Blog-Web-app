@@ -4,6 +4,5 @@
 		$id = $_GET['id'];
 		$post = $user->DeleteUser($id);
 		 if($post){
-        	header('Location:users.php');	
+      header('Location:users.php');	
 		}
-?>

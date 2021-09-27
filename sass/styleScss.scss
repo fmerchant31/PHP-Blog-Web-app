@@ -1,79 +1,68 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.promo{
+.promo {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &__card{
+    &__card {
         display: flex;
         flex-wrap: wrap;
-
-        &-left{
+        &-left {
             margin: 0 auto;
             padding-top: 44px;
             width: 400px;
-            text-align:center;
+            text-align: center;
             background-color: #f4ece6;
             box-shadow: black 1px 10px 100px -40px;
-
         }
-
-        &-right{
+        &-right {
             margin: 0 auto;
             padding-top: 34px;
             padding-left: 30px;
             padding-right: 20px;
             width: 480px;
             background-color: #fff;
-            
         }
     }
-
-    &__img{
+    &__img {
         width: 205px;
         height: 205px;
         overflow: hidden;
         border-radius: 100%;
         margin: 0 auto 3px auto;
-    
-        img{
+        img {
             width: 100%;
         }
     }
-    
-    &__name{
+    &__name {
         font-weight: 700%;
         font-size: 27px;
     }
-    &__underline{
+    &__underline {
         width: 50px;
         height: 3px;
         margin: 0 auto;
         background: rgb(89, 155, 255);
         margin-top: 25px;
     }
-    &__job{
+    &__job {
         margin-top: 25px;
         letter-spacing: 0.2rem;
         font-weight: 700;
     }
-
-    &__title{
+    &__title {
         font-size: 100px;
         font-weight: 700;
-
     }
-    &__subtitle{
+    &__subtitle {
         font-size: 25px;
-
     }
-    &__descr{
+    &__descr {
         margin-top: 40px;
         line-height: 2rem;
         font-size: 17px;
