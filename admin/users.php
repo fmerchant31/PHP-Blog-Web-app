@@ -29,7 +29,7 @@ require 'inc/header.php';
 
                         <tr>
                             <td scope="row"><?php echo $res['id']; ?></td>
-                            <td><a href="./profile.php?id=<?php echo $res['id']; ?>"><img class="card-img-top" src="image/<?php echo $res['photo']; ?>" alt="" style="width:25%; height:25%;"></td?></a>
+                            <td><a href="./profile.php?username=<?php echo $res['username']; ?>"><img class="card-img-top" src="image/<?php echo $res['photo']; ?>" alt="" style="width:25%; height:25%;"></td?></a>
                             <td><?php echo $res['firstname']; ?></td>
                             <td><?php echo $res['lastname']; ?></td>
                             <td><?php echo $res['username']; ?></td>
