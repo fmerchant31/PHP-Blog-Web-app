@@ -44,7 +44,8 @@ include 'inc/header.php'
                     <div class="promo__descr">
                         <i class="fa fa-envelope" aria-hidden="true"></i> <?php echo $post['email']; ?> <br>
                         <i class="fa fa-phone" aria-hidden="true"></i> <?php echo $post['mobile']; ?> <br>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $post['address']; ?> <br>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $post['address']; ?> <br><br><br>
+                        <a href="edituser.php?id=<?php echo $post['id']; ?>" class="btn btn-info">Edit</a>
                     </div>
 
                 </div>
