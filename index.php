@@ -75,9 +75,13 @@
 			<div class="card  bg-light" style = "width: 22rem; " >
 			<img class="card-img-top" src="admin/image/<?php echo $post['photo']; ?>" alt="">
 			<div class="card-body">
+			<?php if(isset($_SESSION['username'])==true):?>
+				<h3 class="card-title"><a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h3>
+			<?php else:?>
 				<h3 class="card-title"><?php echo $post['title']; ?></h3>
+			<?php endif; ?>
 				
-				<p class="card-text">Created On <?php echo $post['created_at']; ?> by <?php  echo $post['author'] ?></p>
+				<p class="card-text">By, <!--  --><?php  echo $post['author'] ?></p>
 				<!--<p class="card-text"></p>-->
 				<?php if(isset($_SESSION['username'])==true):?>
 					<a class="btn btn-info" href="post.php?id=<?php echo $post['id']; ?>">Read More</a>

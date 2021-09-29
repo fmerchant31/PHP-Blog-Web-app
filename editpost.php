@@ -7,7 +7,7 @@
 		$tempname = $_FILES["uploadfile"]["tmp_name"];
 		$author = $_SESSION['username'];
 		if(isset($filename) and !empty($filename)){	
-			$folder = "image/" . $filename;
+			$folder = "./admin/image/" . $filename;
       if (move_uploaded_file($tempname, $folder)) {
 				$msg = "Image uploaded successfully";
 			}else{

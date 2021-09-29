@@ -1,0 +1,29 @@
+{
+    "name": "Blog-web-app",
+    "version": "1.0.0",
+    "description": "Blog web site with different feature made using PHP with XAMPP server.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fmerchant31/PHP-Blog-Web-app.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/fmerchant31/PHP-Blog-Web-app/issues"
+    },
+    "homepage": "https://github.com/fmerchant31/PHP-Blog-Web-app#readme",
+    "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-minify": "^3.1.0",
+        "gulp-sass": "^5.0.0",
+        "sass": "^1.42.1"
+    },
+    "dependencies": {
+        "browser-sync": "^2.27.5"
+    }
+}
