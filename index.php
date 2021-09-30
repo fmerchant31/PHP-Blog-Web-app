@@ -64,7 +64,7 @@
 </a>
 </div>
 
-		
+	<div class="container"> 		
 		<h2 class="text-center">Blog Posts</h2>
 		
 			<div class="row" id="row">
@@ -72,21 +72,22 @@
 			<!--<div class="alert alert-secondary display" id="example">-->
 			<div class="col col-sm-4">
     		<div class="card-columns-fluid">
-			<div class="card  bg-light" style = "width: 22rem; " >
-			<img class="card-img-top" src="admin/image/<?php echo $post['photo']; ?>" alt="">
-			<div class="card-body">
-			<?php if(isset($_SESSION['username'])==true):?>
-				<h3 class="card-title"><a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h3>
-			<?php else:?>
-				<h3 class="card-title"><?php echo $post['title']; ?></h3>
-			<?php endif; ?>
-				
-				<p class="card-text">By, <!--  --><?php  echo $post['author'] ?></p>
-				<!--<p class="card-text"></p>-->
-				<?php if(isset($_SESSION['username'])==true):?>
-					<a class="btn btn-info" href="post.php?id=<?php echo $post['id']; ?>">Read More</a>
-				<?php endif; ?>
-			</div></div></div></div>
+					<div class="card  bg-light" style = "width: 22rem; " >
+						<img class="card-img-top" src="admin/image/<?php echo $post['photo']; ?>" alt="">
+						<div class="card-body">
+							<?php if(isset($_SESSION['username'])==true):?>
+								<h3 class="card-title"><a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h3>
+							<?php else:?>
+								<h3 class="card-title"><?php echo $post['title']; ?></h3>
+							<?php endif; ?>
+							<p class="card-text">By, <?php  echo $post['author'] ?></p>
+							<?php if(isset($_SESSION['username'])==true):?>
+								<a class="btn btn-info" href="post.php?id=<?php echo $post['id']; ?>">Read More</a>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			</div>
 		<?php endforeach ?>
 	</div></div>
 	<?php  $prev = $page - 1;

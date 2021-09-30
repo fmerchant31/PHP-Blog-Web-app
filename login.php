@@ -20,42 +20,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 } else {
 ?>
-	<!-- form begin -->
-	<div class="row" style="padding-top: 40px;">
-		<div class="offset-md-3 col-md-6">
-			<div class="card bg-info text-white">
-				<div class="card-header">
-					<h4 class="card-title text-center">Sign In</h4>
-				</div>
-				<div class="card-body">
-					<form action="" method="post">
-						<div class="form-group">
-							<label for="username">User Name</label>
-							<input type="text" class="form-control" name="username" require>
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
+	<head>
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css?v=2">
+</head>
+	<div class="center-item">
+		<form action="" method="post">
+			<input type="text" placeholder="Enter username" name="username" require>
+			
+			<div class="input-group-append" >
+			<input type="password" placeholder="Enter password" name="password" id="password" require>
+			<span  onclick="password_show_hide();" style="padding-top:35px; padding-left:10px;" \>
+					<i class="fas fa-eye" id="show_eye" ></i>
+					<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+			</span>
+</div> 
+			<button type="submit" name="submit">Login</button>
+			<p><a href="forgetpass.php">Forget Password?</a></p>
+		</form>
 
-							<div class="input-group-append">
-								<input type="password" class="form-control pwd" name="password" id="password" require>
-								<span class="input-group-text" onclick="password_show_hide();">
-									<i class="fas fa-eye" id="show_eye"></i>
-									<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-								</span>
-							</div>
-						</div>
-						<div class="form-group">
-							<a href="forgetpass.php" style="color:white;text-align:center;" name="forget">Forget Password</a>
-						</div>
-
-				</div>
-				<div class="card-footer">
-					<button type="submit" class="btn btn-primary" name="submit" style="width: 100%;">Sign In</button>
-				</div>
-				</form> <!-- form end -->
-			</div> <!-- card end -->
-		</div>
 	</div>
+</body>
 
 <?php } ?>
 

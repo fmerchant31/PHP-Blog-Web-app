@@ -1,0 +1,15 @@
+@import "../abstract/variables";
+button {
+    background-color: $btn-color;
+    color: $textcolor;
+    font-size: 18px;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: $btn-hover;
+    }
+}
